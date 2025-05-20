@@ -1,4 +1,3 @@
-version: "3"
 services:
   outline:
     image: outlinewiki/outline
@@ -7,15 +6,17 @@ services:
       - REDIS_URL=redis://redis:6379
       - SECRET_KEY=7e3c100b817537e07b5a8ee029d6a7bc9cdf8da355e2617ce4e33137cbb29340
       - UTILS_SECRET=myutilsecret
-      - URL=https://bb01-103-88-237-230.ngrok-free.app
+      - URL=https://ad63-103-186-128-108.ngrok-free.app
       - PORT=3000
       - PGSSLMODE=disable
+
       - OIDC_CLIENT_ID=outline
       - OIDC_CLIENT_SECRET=e0101d69cc334ee493f9d53b09d4b25f
-      - OIDC_AUTH_URI=https://d5d3-103-88-237-230.ngrok-free.app/realms/kb-chat-demo-fixed/protocol/openid-connect/auth
-      - OIDC_TOKEN_URI=https://d5d3-103-88-237-230.ngrok-free.app/realms/kb-chat-demo-fixed/protocol/openid-connect/token
-      - OIDC_USERINFO_URI=https://d5d3-103-88-237-230.ngrok-free.app/realms/kb-chat-demo-fixed/protocol/openid-connect/userinfo
+      - OIDC_AUTH_URI=https://64c7-103-186-128-108.ngrok-free.app/realms/kb-chat-demo-fixed/protocol/openid-connect/auth
+      - OIDC_TOKEN_URI=https://64c7-103-186-128-108.ngrok-free.app/realms/kb-chat-demo-fixed/protocol/openid-connect/token
+      - OIDC_USERINFO_URI=https://64c7-103-186-128-108.ngrok-free.app/realms/kb-chat-demo-fixed/protocol/openid-connect/userinfo
       - OIDC_DISPLAY_NAME=Keycloak
+
     ports:
       - "4100:3000"
     depends_on:
@@ -28,6 +29,8 @@ services:
     environment:
       POSTGRES_PASSWORD: password
       POSTGRES_DB: outline
+    volumes:
+      - outline-db:/var/lib/postgresql/data  # Persistent storage
 
   redis:
     image: redis
@@ -51,6 +54,8 @@ services:
       POSTGRES_DB: chatwoot
       POSTGRES_USER: chatwoot
       POSTGRES_PASSWORD: chatwoot
+    volumes:
+      - chatwoot-db:/var/lib/postgresql/data
 
   chatwoot:
     image: chatwoot/chatwoot:latest
@@ -70,3 +75,9 @@ services:
       - chatwoot-postgres
       - redis
     command: ["bundle", "exec", "rails", "s", "-b", "0.0.0.0"]
+
+# 🔽 Define volumes here
+volumes:
+  outline-db:
+  chatwoot-db:
+

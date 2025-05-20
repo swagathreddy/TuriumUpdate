@@ -1,29 +1,35 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <title>Chatwoot Bot Test</title>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Chatwoot + Bot Demo</title>
 </head>
 <body>
-  <h1>Welcome to Chatwoot Bot</h1>
-  
-  <!-- Chatwoot Widget Script -->
-<script>
-  (function(d,t) {
-    var BASE_URL="http://localhost:4000";
-    var g=d.createElement(t),s=d.getElementsByTagName(t)[0];
-    g.src=BASE_URL+"/packs/js/sdk.js";
-    g.defer = true;
-    g.async = true;
-    s.parentNode.insertBefore(g,s);
-    g.onload=function(){
-      window.chatwootSDK.run({
-        websiteToken: 'RbTnCC3Z6xvNb7bFcppVXT4K',
-        baseUrl: BASE_URL
-      })
-    }
-  })(document,"script");
-</script>
+  <h2>✅ Chatwoot Bot Test Page</h2>
 
+  <script>
+    (function(d, t) {
+      var BASE_URL = "http://localhost:4000"; // CHANGE if needed
+      var g = d.createElement(t), s = d.getElementsByTagName(t)[0];
+      g.src = BASE_URL + "/packs/js/sdk.js";
+      g.defer = true; g.async = true;
+      s.parentNode.insertBefore(g, s);
+
+      g.onload = function () {
+        console.log("✅ Chatwoot SDK loaded");
+
+        window.chatwootSDK.run({
+          websiteToken: "J1o6Kz2H2C2VbgHiMe6innrE", // your token
+          baseUrl: BASE_URL
+        });
+
+        window.addEventListener("chatwoot:ready", function () {
+          console.log("✅ Chatwoot ready event fired");
+          window.$chatwoot.setUser("guest@demo.com", { name: "Guest User" });
+        });
+      };
+    })(document, "script");
+  </script>
 </body>
 </html>

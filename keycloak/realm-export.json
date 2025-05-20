@@ -8,10 +8,10 @@
       "protocol": "openid-connect",
       "publicClient": false,
       "redirectUris": [
-        "https://bb01-103-88-237-230.ngrok-free.app/*"
+        "https://ad63-103-186-128-108.ngrok-free.app/*"
       ],
       "webOrigins": [
-        "https://bb01-103-88-237-230.ngrok-free.app"
+        "https://ad63-103-186-128-108.ngrok-free.app"
       ],
       "secret": "e0101d69cc334ee493f9d53b09d4b25f",
       "defaultClientScopes": [
